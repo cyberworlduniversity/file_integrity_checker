@@ -13,6 +13,7 @@ import os
 import sys
 import argparse
 import time
+import tempfile
 from datetime import datetime
 from pathlib import Path
 from colorama import Fore, Style, init
@@ -69,9 +70,23 @@ def load_database(db_path: str) -> dict:
 
 
 def save_database(db: dict, db_path: str):
-    """Save the hash database to a JSON file."""
-    with open(db_path, "w") as f:
-        json.dump(db, f, indent=4)
+    """Atomically replace the hash database without following a target symlink."""
+    target = Path(db_path)
+    parent = target.parent if str(target.parent) else Path(".")
+    fd, temp_path = tempfile.mkstemp(prefix=f".{target.name}.", suffix=".tmp", dir=str(parent))
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(db, f, indent=4)
+            f.flush()
+            os.fsync(f.fileno())
+        # os.replace replaces a symlink itself rather than writing through it.
+        os.replace(temp_path, target)
+    except Exception:
+        try:
+            os.unlink(temp_path)
+        except FileNotFoundError:
+            pass
+        raise
 
 
 # ─────────────────────────────────────────────
