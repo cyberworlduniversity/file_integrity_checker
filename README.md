@@ -1,5 +1,15 @@
 # 📁 File Integrity Checker
 
+
+## Get this repository
+
+Clone the current project (this repository's canonical GitHub URL), then follow the installation and usage steps below.
+
+```bash
+git clone https://github.com/cyberworlduniversity/file_integrity_checker.git
+cd file_integrity_checker
+```
+
 > **Tool #18 in the Security Toolkit by [hemanathan115](https://github.com/hemanathan115)**
 
 A Python-based command-line tool that **generates and verifies file hashes** to detect unauthorized file modifications (tampering). Perfect for monitoring critical system files, configuration files, or any sensitive data.
@@ -25,8 +35,8 @@ A Python-based command-line tool that **generates and verifies file hashes** to 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/hemanathan115/file-integrity-checker.git
-cd file-integrity-checker
+git clone https://github.com/cyberworlduniversity/file_integrity_checker.git
+cd file_integrity_checker
 ```
 
 ### 2. Install dependencies
