@@ -200,3 +200,53 @@ MIT License — free to use, modify, and distribute.
 ---
 
 *Built with ❤️ by [hemanathan115](https://github.com/hemanathan115)*
+
+
+## Repository Quick Start
+
+Clone the canonical repository:
+
+```bash
+git clone https://github.com/cyberworlduniversity/file_integrity_checker.git
+cd file_integrity_checker
+```
+
+### Requirements and installation
+
+- Install Python 3.10+ and pip.
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### Build / run
+
+```bash
+file_integrity_checker.py
+```
+
+```bash
+python file_integrity_checker.py
+```
+
+### Validation
+
+```bash
+python -m compileall -q .
+```
+
+Use the tool only on files you are authorized to inspect; keep baseline hashes protected.
+
+### Program flow
+
+```mermaid
+flowchart TD
+    A[Start] --> B[Initialize application]
+    B --> C[Select interface or input]
+    C --> D{Ready to process?}
+    D -- No --> E[Report setup or input issue]
+    D -- Yes --> F[Run file integrity checker operation]
+    F --> G[Summarize findings]
+    G --> H[Display results and exit]
+    E --> H
+```
